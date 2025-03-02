@@ -1,0 +1,83 @@
+<p>Schema学習中 SP</p>
+
+{% comment %} ブログ記事の投稿 {% endcomment %}
+
+{% if section.settings.article != blank %}
+    {% assign article = articles[section.settings.article] %}
+    <h3>{{ article.title }}</h3>
+    <h3>{{ article.content }}</h3>
+    <a href="{{ article.url }}">続きを読む</a>
+{% else %}
+    <p>ブログ記事が選択されていません</p>
+{% endif %}
+
+{% comment %} 記事（ブログ） {% endcomment %}
+{% if section.settings.blog != blank %}
+    <h2>ブログ</h2>
+    {% assign blog = blogs[section.settings.blog] %}
+    <h3>{{ blog.title }}</h3>
+    <ul>
+        {% for article in blog.articles limit: 3 %}
+            <li>
+                <a href="{{ article.url }}">{{ article.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ blog.url }}">ブログ一覧を見る</a>
+{% else %}
+    <p>ブログを選択してください</p>
+{% endif %}
+
+    {% comment %} コレクション {% endcomment %}
+     {% if section.settings.collection != blank %}
+        <p>コレクション</p>
+        {% assign collection = collections[section.settings.collection] %}
+        <h3>{{ collection.title }}</h3>
+        <ul>
+        {% for product in collection.products limit: 3 %}
+            <li>
+                <a href="{{ product.url }}">
+                    {{ product.featured_image | image_url: width: 300 |  image_tag }}
+                    <h4>{{ product.title }}</h4>
+                </a>
+                <p>{{ product.price | money }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+            <p>コレクションを選択してください</p>
+                
+     {% endif %}
+
+{% schema %}
+    {
+        "name": "Schema学習中 SP",
+        "tag": "section",
+        "class": "schema",
+        "settings": [
+            {
+                "type": "article",
+                "id": "article",
+                "label": "ブログ記事",
+                "info": "ブログ記事を選択してください",
+            },
+            {
+                "type": "blog",
+                "id": "blog",
+                "label": "ブログ",
+                "info": "ブログを選んでください",
+            },
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "コレクション",
+                "info": "コレクションを選んでください",
+            }
+        ],
+        "presets": [
+            {
+                "name": "Schema学習中 SP",
+            }
+    ]
+    }
+{% endschema %}
