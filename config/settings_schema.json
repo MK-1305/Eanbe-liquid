@@ -145,6 +145,17 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Font Picker 設定"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_custom_font",
+        "label": "カスタムフォント",
+        "default": "assistant_n4",
+        "info": "カスタムフォントを選択してください"
       }
     ]
   },
