@@ -1,7 +1,24 @@
 <p>Schema 学習中 SP ビジュアル</p>
 
-<div class="color{{ section.settings.color_scheme }}"></div>
+{% if section.settings.html != blank %}
+    <div class="">
+        {{ section.settings.html }}
+    </div>
+{% endif %}
+
+{% if section.settings.liquid != blank %}
+    <div class="">
+        {{ section.settings.liquid }}
+    </div>
+{% endif %}
+
+{% if template == "index" %}
+    <p>Indexのテンプレート</p>
+{% endif %}
+
+<div class="color{{ section.settings.color_scheme }}">
 <p class="test">テスト中です</p>
+</div>
 
 {% if section.settings.image_picker != blank %}
     {{ section.settings.image_picker |  image_url: width: 500 |  image_tag }}
@@ -25,6 +42,28 @@ Type: {{ section.settings.video_url.type }}<br>
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
     </iframe>
+{% endif %}
+
+{% if section.settings.metaobject != blank %}
+    <h2>店舗</h2>
+    {% assign section = section.settings.metaobject %}
+    <div class="">
+        {{ shop.image | image_url: width: 500 | image_tag }}
+        <p>店舗名{{ shop.name }}</p>
+        <p>店舗住所{{ shop.address }}</p>
+    </div>
+{% endif %}
+
+{% if section.settings.metaobject_list != blank %}
+    <h2>店舗一覧</h2>
+    {% assign shops = section.settings.metaobject_list %}
+    {% for shopInfo in shops %}
+        <div class="">
+            {{ shopInfo.image | image_url: width: 500 | image_tag }}
+            <p>店舗名{{ shopInfo.name }}</p>
+            <p>店舗住所{{ shopInfo.address }}</p>
+        </div>
+    {% endfor %}
 {% endif %}
 
 <style>
@@ -89,6 +128,32 @@ Type: {{ section.settings.video_url.type }}<br>
             "accept": [
                 "youtube"
             ]
+        },
+        {
+            "type": "html",
+            "id": "html",
+            "label": "HTML",
+            "info": "HTMLを入力してください"
+        },
+        {
+            "type": "liquid",
+            "id": "liquid",
+            "label": "Liquid",
+            "info": "Liquidを入力してください"
+        },
+        // メタオブジェクトを設定して呼び出せる
+        {
+            "type": "metaobject",
+            "id": "metaobject",
+            "label": "メタオブジェクト-店舗",
+            "metaobject_type": "shoplist"
+        },
+        {
+            "type": "metaobject_list",
+            "id": "metaobject_list",
+            "label": "メタオブジェクト-店舗リスト",
+            "metaobject_type": "shoplist",
+            "limit": 2
         }
     ],
     "presets": [
