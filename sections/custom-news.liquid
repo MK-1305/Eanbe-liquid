@@ -1,0 +1,50 @@
+{{ 'custom-news.css' | asset_url | stylesheet_tag }}
+
+<section class="c-news">
+  <div class="c-news__inner">
+    <h2 class="c-news__title">NEWS</h2>
+    <div class="c-news__card">
+
+      <div class="c-news__lists">
+        <a href="" class="c-news__list c-news-link">
+          <div class="c-news-link__meta">
+            <time class="c-news-link__date" datetime="2025-1-29">2025年1月10日</time>
+            <div class="c-news-link__label">お知らせ</div>
+          </div>
+          <h3 class="c-news-link__title">Eanbe Demo ストアがオープンしました。</h3>
+        </a>
+
+        <a href="" class="c-news__list c-news-link">
+          <div class="c-news-link__meta">
+            <time class="c-news-link__date" datetime="2025-1-29">2025年1月10日</time>
+            <div class="c-news-link__label">お知らせ</div>
+          </div>
+          <h3 class="c-news-link__title">Eanbe Demo ストアがオープンしました。</h3>
+        </a>
+
+        <a href="" class="c-news__list c-news-link">
+          <div class="c-news-link__meta">
+            <time class="c-news-link__date" datetime="2025-1-29">2025年1月10日</time>
+            <div class="c-news-link__label">お知らせ</div>
+          </div>
+          <h3 class="c-news-link__title">Eanbe Demo ストアがオープンしました。</h3>
+        </a>
+
+      </div>
+      <div class="c-news__link">
+        <a href="">もっとみる</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "NEWSセクション",
+    "presets": [
+      {
+        "name": "Custom News"
+      }
+    ]
+  }
+{% endschema %}

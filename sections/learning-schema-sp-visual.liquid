@@ -46,9 +46,9 @@ Type: {{ section.settings.video_url.type }}<br>
 
 {% if section.settings.metaobject != blank %}
     <h2>店舗</h2>
-    {% assign section = section.settings.metaobject %}
+    {% assign shop = section.settings.metaobject %}
     <div class="">
-        {{ shop.image | image_url: width: 500 | image_tag }}
+      <!-- {{ shop.image | image_url: width: 500 | image_tag }} -->
         <p>店舗名{{ shop.name }}</p>
         <p>店舗住所{{ shop.address }}</p>
     </div>
@@ -59,7 +59,7 @@ Type: {{ section.settings.video_url.type }}<br>
     {% assign shops = section.settings.metaobject_list %}
     {% for shopInfo in shops %}
         <div class="">
-            {{ shopInfo.image | image_url: width: 500 | image_tag }}
+          <!-- {{ shopInfo.image | image_url: width: 500 | image_tag }} -->
             <p>店舗名{{ shopInfo.name }}</p>
             <p>店舗住所{{ shopInfo.address }}</p>
         </div>
@@ -146,13 +146,13 @@ Type: {{ section.settings.video_url.type }}<br>
             "type": "metaobject",
             "id": "metaobject",
             "label": "メタオブジェクト-店舗",
-            "metaobject_type": "shoplist"
+            "metaobject_type": "shop"
         },
         {
             "type": "metaobject_list",
             "id": "metaobject_list",
             "label": "メタオブジェクト-店舗リスト",
-            "metaobject_type": "shoplist",
+            "metaobject_type": "shop",
             "limit": 2
         }
     ],
