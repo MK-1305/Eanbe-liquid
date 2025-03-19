@@ -1,7 +1,20 @@
 {{ 'custom-news.css' | asset_url | stylesheet_tag }}
 
-<section class="c-news">
-  <div class="c-news__inner">
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_sp }}px;
+    padding-bottom: {{ section.settings.padding_bottom_sp }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_pc }}px;
+      padding-bottom: {{ section.settings.padding_bottom_pc }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="section-{{ section.id }}-padding c-news__inner">
     <h2 class="c-news__title">NEWS</h2>
     <div class="c-news__card">
 
@@ -36,11 +49,67 @@
       </div>
     </div>
   </div>
-</section>
+</div>
+
 
 {% schema %}
   {
     "name": "NEWSセクション",
+    "tag": "section",
+    "class": "section custom-news c-news",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-1"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+      {
+        "type": "range",
+        "id": "padding_top_pc",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_pc",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 44
+      }, {
+        "type": "header",
+        "content": "モバイル上下の余白"
+      }, {
+        "type": "range",
+        "id": "padding_top_sp",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 33
+      }, {
+        "type": "range",
+        "id": "padding_bottom_sp",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 27
+      }
+    ],
     "presets": [
       {
         "name": "Custom News"
