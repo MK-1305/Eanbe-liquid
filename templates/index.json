@@ -9,20 +9,14 @@
  */
 {
   "sections": {
-    "learning_schema_sp_visual_8UXdWj": {
-      "type": "learning-schema-sp-visual",
+    "custom_news_iDQang": {
+      "type": "custom-news",
       "settings": {
-        "color": "#000000",
-        "color_background": "linear-gradient(135deg, rgba(245, 247, 250, 1), rgba(195, 207, 226, 1) 100%)",
         "color_scheme": "",
-        "font_picker": "helvetica_n4",
-        "video_url": "",
-        "html": "",
-        "liquid": "",
-        "metaobject": "tokyo",
-        "metaobject_list": [
-          "tokyo"
-        ]
+        "padding_top_pc": 54,
+        "padding_bottom_pc": 44,
+        "padding_top_sp": 33,
+        "padding_bottom_sp": 27
       }
     },
     "image_banner": {
@@ -267,7 +261,7 @@
     }
   },
   "order": [
-    "learning_schema_sp_visual_8UXdWj",
+    "custom_news_iDQang",
     "image_banner",
     "image_with_text_mbnNYx",
     "featured_collection",
