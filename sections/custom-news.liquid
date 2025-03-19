@@ -13,39 +13,45 @@
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="section-{{ section.id }}-padding c-news__inner">
-    <h2 class="c-news__title">NEWS</h2>
+{% assign blog = section.settings.news_blog %}
+
+  <div class="color-{{ section.settings.color_scheme }} gradient">
+  {% comment %} // 元々ある幅のCSSを削除し、既存のpage-widthクラスを追加し幅を既存セクションと合わせた {% endcomment %}
+  <div class="page-width section-{{ section.id }}-padding c-news__inner">
+    <h2 class="c-news__title">{{ section.settings.title }}</h2>
     <div class="c-news__card">
 
       <div class="c-news__lists">
-        <a href="" class="c-news__list c-news-link">
-          <div class="c-news-link__meta">
-            <time class="c-news-link__date" datetime="2025-1-29">2025年1月10日</time>
-            <div class="c-news-link__label">お知らせ</div>
-          </div>
-          <h3 class="c-news-link__title">Eanbe Demo ストアがオープンしました。</h3>
-        </a>
+        {% for article in blog.articles %}
+          <a href="{{ article.url }}" class="c-news__list c-news-link">
+            <div class="c-news-link__meta">
+              <time class="c-news-link__date" datetime="{{ article.published_at }}">{{ article.published_at | date: "%Y年%m月%d日" }}</time>
 
-        <a href="" class="c-news__list c-news-link">
-          <div class="c-news-link__meta">
-            <time class="c-news-link__date" datetime="2025-1-29">2025年1月10日</time>
-            <div class="c-news-link__label">お知らせ</div>
-          </div>
-          <h3 class="c-news-link__title">Eanbe Demo ストアがオープンしました。</h3>
-        </a>
+              {% if article.tags.size == 1 %}
+                {% for tag in article.tags %}
+                  {% if tag contains 'news' or tag contains 'column' or tag contains 'event' %}
+                    <div class="c-news-link__label is-{{ tag | split: '_' | first }}">
+                      {{ tag | split: '_' | last }}
+                    </div>
+                  {% else %}
+                    <div class="c-news-link__label">
+                      {{ tag }}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                <div class="c-news-link__label">
+                  お知らせ
+                </div>
+              {% endif %}
 
-        <a href="" class="c-news__list c-news-link">
-          <div class="c-news-link__meta">
-            <time class="c-news-link__date" datetime="2025-1-29">2025年1月10日</time>
-            <div class="c-news-link__label">お知らせ</div>
-          </div>
-          <h3 class="c-news-link__title">Eanbe Demo ストアがオープンしました。</h3>
-        </a>
-
+            </div>
+            <h3 class="c-news-link__title">{{ article.title }}</h3>
+          </a>
+        {% endfor %}
       </div>
       <div class="c-news__link">
-        <a href="">もっとみる</a>
+        <a href="{{ blog.url }}">もっとみる</a>
       </div>
     </div>
   </div>
@@ -66,9 +72,20 @@
       },
       {
         "type": "header",
-        "content": "t:sections.all.padding.section_padding_heading"
+        "content": "NEWSセクションの設定"
       },
       {
+        "type": "text",
+        "id": "title",
+        "label": "見出し",
+        "default": "NEWS"
+      },
+      {
+        "type": "blog",
+        "id": "news_blog",
+        "label": "blog",
+        "info": "NEWSのブログを選んでください"
+      }, {
         "type": "range",
         "id": "padding_top_pc",
         "min": 0,
@@ -77,8 +94,7 @@
         "unit": "px",
         "label": "t:sections.all.padding.padding_top",
         "default": 36
-      },
-      {
+      }, {
         "type": "range",
         "id": "padding_bottom_pc",
         "min": 0,
