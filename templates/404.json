@@ -1,0 +1,54 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {}
+    },
+    "rich_text_D4Fz3y": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_7RPHmn": {
+          "type": "heading",
+          "settings": {
+            "heading": "ブランドについて説明する!!",
+            "heading_size": "h1"
+          }
+        },
+        "text_jhyLwV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ブランドに関する情報をお客様と共有します。商品を説明したり、告知をしたり、ストアへのお客様を歓迎したりします。<\/p>"
+          }
+        },
+        "button_hBhyB7": {
+          "type": "button",
+          "settings": {
+            "button_label": "ボタンのラベル",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_7RPHmn",
+        "text_jhyLwV",
+        "button_hBhyB7"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_D4Fz3y"
+  ]
+}
